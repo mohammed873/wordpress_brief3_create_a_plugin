@@ -2,9 +2,9 @@ in order to overview this project you need to :
 
 first download the zip folder of this project or you can pull it using git tool
 
-then rename that folder to "plugin_brief"
+then rename that folder to "my_plugin"
 
-secondely once it is downloaded you should move that folder into xaamp/htdocs folder
+secondely once it is downloaded you should move that folder into xaamp\htdocs\wp-content\plugins\my_plugin folder
 
 Upload my_plugin.php to the /wp-content/plugins/ directory
 
