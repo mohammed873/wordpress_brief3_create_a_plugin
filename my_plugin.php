@@ -43,7 +43,8 @@ define( 'MY_PLUGIN_VERSION', '1.0.0' );
  */
 function activate_my_plugin() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-my_plugin-activator.php';
-	My_plugin_Activator::activate();
+	$activator = new My_plugin_Activator();
+	$activator->activate();
 }
 
 /**
@@ -78,5 +79,9 @@ function run_my_plugin() {
 	$plugin = new My_plugin();
 	$plugin->run();
 
+	
 }
 run_my_plugin();
+
+
+
