@@ -66,7 +66,7 @@ $con = $data->connect();
   <h2 class="text-center">Plugin details</h2><br>        
   <table class="table table-dark">
       <?php
-        $sql="SELECT * FROM plugin_data";  
+        $sql="SELECT * FROM wp_plugin_data";  
         $stm=$con->prepare($sql);
         $stm->execute();
         $result=$stm->get_result();
