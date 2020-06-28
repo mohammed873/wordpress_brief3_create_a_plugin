@@ -37,7 +37,7 @@ class DB
   }
   public function insert_plugin_data($plugin_name,$plugin_description,$plugin_option)
   {
-	$sql="INSERT INTO `plugin_data` (plugin_name, plugin_description,plugin_option) VALUES ('$plugin_name',' $plugin_description','$plugin_option')";
+	$sql="INSERT INTO `wp_plugin_data` (plugin_name, plugin_description,plugin_option) VALUES ('$plugin_name',' $plugin_description','$plugin_option')";
 	$result = $this->connect()->query($sql);
     return $result;
   }
@@ -52,6 +52,7 @@ $data = new DB();
 	$data->insert_plugin_data($plugin_name,$plugin_description,$plugin_option);
 
  }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
