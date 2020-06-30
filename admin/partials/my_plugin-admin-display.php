@@ -1,4 +1,5 @@
 
+
 <?php
 
 /**
@@ -12,47 +13,17 @@
  * @package    My_plugin
  * @subpackage My_plugin/admin/partials
  */
+global $wpdb;
 
-class DB
-{
-
-  private $servername;
-  private $username;
-  private $password;
-  private $dbname;
-
-
-  public function connect()
-  {
-
-    $this->servername = "localhost";
-    $this->username = "root";
-    $this->password = "";
-    $this->dbname = "plugin";
-
-
-    $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
-    return $conn;
-  }
-  public function insert_plugin_data($plugin_name,$plugin_description,$plugin_option)
-  {
-	$sql="INSERT INTO `wp_plugin_data` (plugin_name, plugin_description,plugin_option) VALUES ('$plugin_name',' $plugin_description','$plugin_option')";
-	$result = $this->connect()->query($sql);
-    return $result;
-  }
-}
-
-$data = new DB();
  if(isset($_POST['save'])){
-	$plugin_name = $_POST['plugin_name'];
-    $plugin_description = $_POST['plugin_description'];
-	$plugin_option = $_POST['plugin_option'];
-
-	$data->insert_plugin_data($plugin_name,$plugin_description,$plugin_option);
-
- }
- 
+$data = array(
+     'plugin_name' => $_POST['plugin_name'],
+     'plugin_description' => $_POST['plugin_description'],
+     'plugin_option' => $_POST['plugin_option'],
+);
+$table_name = 'wp_plugin_data';
+$results = $wpdb->insert($table_name,$data);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,3 +72,4 @@ $data = new DB();
 </div>
 </body>
 </html>
+
