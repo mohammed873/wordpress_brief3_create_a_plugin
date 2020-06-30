@@ -1,30 +1,8 @@
 <?php
 
-class DB
-{
+global $wpdb;
+	$results = $wpdb->get_results("SELECT * FROM wp_plugin_data");
 
-  private $servername;
-  private $username;
-  private $password;
-  private $dbname;
-
-
-  public function connect()
-  {
-
-    $this->servername = "localhost";
-    $this->username = "root";
-    $this->password = "";
-    $this->dbname = "plugin";
-
-
-    $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
-    return $conn;
-  }
-}
-$data = new DB();
-$con = $data->connect();
 
 /**
  * Provide a admin area view for the plugin
@@ -65,12 +43,7 @@ $con = $data->connect();
 <div class="wrap col-md-8" style="margin: auto; margin-top:122px;">
   <h2 class="text-center">Plugin details</h2><br>        
   <table class="table table-dark">
-      <?php
-        $sql="SELECT * FROM wp_plugin_data";  
-        $stm=$con->prepare($sql);
-        $stm->execute();
-        $result=$stm->get_result();
-      ?>
+     
     <thead>
       <tr>
         <th>plugin name </th>
@@ -80,11 +53,12 @@ $con = $data->connect();
       </tr>
     </thead>
     <tbody>
-    <?php while($row=$result->fetch_assoc()){ ?>
+    <?php
+    foreach ($results as $details) { ?>
       <tr>
-        <td><?=$row['plugin_name'];?></td>
-        <td><?=$row['plugin_description'];?></td>
-        <td><?=$row['plugin_option'];?></td>
+        <td><?php echo $details->plugin_name; ?></td>
+        <td><?php echo $details->plugin_description; ?></td>
+        <td><?php echo $details->plugin_option; ?></td>
         <td>mohammed elhachimi</td>
       </tr>
     <?php } ?> 
